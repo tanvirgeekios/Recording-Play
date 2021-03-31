@@ -20,9 +20,19 @@ class ViewController: UIViewController,AVAudioRecorderDelegate,AVAudioPlayerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view
+        
+        
+        
         setupRecorder()
         playBTN.isEnabled = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        let alert = UIAlertController(title: "Error", message: " Please add a microphone and record Otherwise App will Crash", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     func getDocumentDirectiory()->URL{
@@ -83,7 +93,7 @@ class ViewController: UIViewController,AVAudioRecorderDelegate,AVAudioPlayerDele
     }
     
     @IBAction func playAction(_ sender: UIButton) {
-        if soundPlayer != nil{
+        //if soundPlayer != nil{
             if playBTN.titleLabel?.text == "Play"{
                 playBTN.setTitle("Stop", for: .normal)
                 recordBTN.isEnabled = false
@@ -94,12 +104,12 @@ class ViewController: UIViewController,AVAudioRecorderDelegate,AVAudioPlayerDele
                 playBTN.setTitle("Play", for: .normal)
                 recordBTN.isEnabled = true
             }
-        }else{
-            let alert = UIAlertController(title: "Error", message: "No microphone, Please add a microphone and record again", preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
-        }
+//        }else{
+//            let alert = UIAlertController(title: "Error", message: "No microphone, Please add a microphone and record again", preferredStyle: .alert)
+//            let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+//            alert.addAction(action)
+//            present(alert, animated: true, completion: nil)
+//        }
     }
 }
 
